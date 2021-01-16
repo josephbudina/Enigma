@@ -14,15 +14,22 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.alphabet
   end
 
-  def test_it_encrypts
-    expected = {
-          encryption: "keder ohulw",
-          key: "02715",
-          date: "040895"
-        }
-
-    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+  def test_it_splits_the_key
+    assert_equal 02, @enigma.split_keys("02715")[:a]
+    assert_equal 27, @enigma.split_keys("02715")[:b]
+    assert_equal 71, @enigma.split_keys("02715")[:c]
+    assert_equal 15, @enigma.split_keys("02715")[:d]
   end
+
+  # def test_it_encrypts
+  #   expected = {
+  #         encryption: "keder ohulw",
+  #         key: "02715",
+  #         date: "040895"
+  #       }
+
+  #   assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+  # end
 
   # def test_it_decrypts
   #   expected = {
