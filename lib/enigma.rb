@@ -33,15 +33,19 @@ class Enigma
       a: split_key(key)[:a] + offsets(date)[:a],
       b: split_key(key)[:b] + offsets(date)[:b],
       c: split_key(key)[:c] + offsets(date)[:c],
-      d: split_key(key)[:d] + offsets(date)[:d],
+      d: split_key(key)[:d] + offsets(date)[:d]
     }
   end
 
+  def  random_key
+    rand(99_999).to_s.rjust(5,"0")
+  end
+
   def encrypt(message, key, date)
-    # encrypted = Hash.new(0)
-    # encrypted[:encryption] = message
-    # encrypted[:key] = key
-    # encrypted[:date] = date
-    # encrypted
+    encrypted = {
+      encryption: message,
+      key: key,
+      date: date
+    }
   end
 end
