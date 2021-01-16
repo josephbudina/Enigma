@@ -15,10 +15,28 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_splits_the_key
-    assert_equal 02, @enigma.split_keys("02715")[:a]
-    assert_equal 27, @enigma.split_keys("02715")[:b]
-    assert_equal 71, @enigma.split_keys("02715")[:c]
-    assert_equal 15, @enigma.split_keys("02715")[:d]
+    assert_equal 02, @enigma.split_key("02715")[:a]
+    assert_equal 27, @enigma.split_key("02715")[:b]
+    assert_equal 71, @enigma.split_key("02715")[:c]
+    assert_equal 15, @enigma.split_key("02715")[:d]
+  end
+
+  def test_it_squares_the_date
+    assert_equal "1672401025", @enigma.date_squared("040895")
+  end
+
+  def test_it_has_offsets
+    assert_equal 1, @enigma.offsets("040895")[:a]
+    assert_equal 0, @enigma.offsets("040895")[:b]
+    assert_equal 2, @enigma.offsets("040895")[:c]
+    assert_equal 5, @enigma.offsets("040895")[:d]
+  end
+
+  def test_it_shifts
+    assert_equal 3, @enigma.shift("02715", "040895")[:a]
+    assert_equal 27, @enigma.shift("02715", "040895")[:b]
+    assert_equal 73, @enigma.shift("02715", "040895")[:c]
+    assert_equal 20, @enigma.shift("02715", "040895")[:d]
   end
 
   # def test_it_encrypts
