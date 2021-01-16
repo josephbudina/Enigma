@@ -39,6 +39,18 @@ class EnigmaTest < Minitest::Test
     assert_equal 20, @enigma.shift("02715", "040895")[:d]
   end
 
+  def test_it_can_generate_random_key
+
+    assert_instance_of String, @enigma.random_key
+    assert_equal 5, @enigma.random_key.length
+    assert @enigma.random_key.to_i >= 0
+    assert @enigma.random_key.to_i <= 99_999
+  end
+
+  # def test_it_shifts_alphabet
+  #   assert_equal 
+  # end
+
   # def test_it_encrypts
   #   expected = {
   #         encryption: "keder ohulw",
