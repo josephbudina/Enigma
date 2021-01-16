@@ -1,5 +1,4 @@
-require 'Minitest/autorun'
-require 'Minitest/pride'
+require './test/test_helper'
 require './lib/enigma'
 require 'date'
 
@@ -33,5 +32,9 @@ class EnigmaTest < Minitest::Test
   #   }
 
   #   assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
+  # end
+
+  # def test_it_can_shift_letters
+  #   assert_equal "k", @cipher.shift("h")
   # end
 end
