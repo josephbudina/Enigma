@@ -39,15 +39,30 @@ class EnigmaTest < Minitest::Test
     assert_equal 20, @enigma.shift("02715", "040895")[:d]
   end
 
-  # def test_it_encrypts
-  #   expected = {
-  #         encryption: "keder ohulw",
-  #         key: "02715",
-  #         date: "040895"
-  #       }
+  def test_it_can_generate_random_key
+    assert_instance_of String, @enigma.random_key
+    assert_equal 5, @enigma.random_key.length
+    assert @enigma.random_key.to_i >= 0
+    assert @enigma.random_key.to_i <= 99_999
+  end
 
-  #   assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
-  # end
+  def test_it_encrypts
+    expected = {
+          encryption: "keder ohulw",
+          key: "02715",
+          date: "040895"
+        }
+
+    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+  end
+
+  def test_it_can_shift_letters
+    assert_equal "b", @enigma.shift_letters(1, "a")
+    assert_equal " ", @enigma.shift_letters(1, "z")
+    assert_equal "c", @enigma.shift_letters(5, "y")
+    assert_equal "a", @enigma.shift_letters(2, "z")
+    assert_equal "b", @enigma.shift_letters(92, "r")
+  end
 
   # def test_it_decrypts
   #   expected = {
@@ -57,9 +72,5 @@ class EnigmaTest < Minitest::Test
   #   }
 
   #   assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
-  # end
-
-  # def test_it_can_shift_letters
-  #   assert_equal "k", @cipher.shift("h")
   # end
 end

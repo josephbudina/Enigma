@@ -33,15 +33,44 @@ class Enigma
       a: split_key(key)[:a] + offsets(date)[:a],
       b: split_key(key)[:b] + offsets(date)[:b],
       c: split_key(key)[:c] + offsets(date)[:c],
-      d: split_key(key)[:d] + offsets(date)[:d],
+      d: split_key(key)[:d] + offsets(date)[:d]
     }
   end
 
-  def encrypt(message, key, date)
-    # encrypted = Hash.new(0)
-    # encrypted[:encryption] = message
-    # encrypted[:key] = key
-    # encrypted[:date] = date
-    # encrypted
+  def random_key
+    rand(99_999).to_s.rjust(5,"0")
+  end
+
+  def encrypt(message, key = random_key, date)
+    encrypted = {
+      encryption: encrypt_message(message, key, date).join,
+      key: key,
+      date: date
+    }
+  end
+
+  def encrypt_message(message, key, date)
+    shifts = shift(key, date)
+    message.chars.map.with_index do |letter, index|
+      if index % 4 == 0
+        shift_letters(shifts[:a], letter)
+      elsif index % 4 == 1
+        shift_letters(shifts[:b], letter)
+      elsif index % 4 == 2
+        shift_letters(shifts[:c], letter)
+      elsif index % 4 == 3
+        shift_letters(shifts[:d], letter)
+      end
+    end
+  end
+
+  def shift_letters(shift_type, letter)
+    index = @alphabet.index(letter)
+    shift_cycle = shift_type % 27
+    if @alphabet.include?(letter)
+      @alphabet.rotate(index)[shift_cycle]
+    else
+      letter
+    end
   end
 end
