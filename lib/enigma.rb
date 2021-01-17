@@ -41,7 +41,7 @@ class Enigma
     rand(99_999).to_s.rjust(5,"0")
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = random_key, date)
     encrypted = {
       encryption: encrypt_message(message, key, date).join,
       key: key,
@@ -69,6 +69,8 @@ class Enigma
     shift_cycle = shift_type % 27
     if @alphabet.include?(letter)
       @alphabet.rotate(index)[shift_cycle]
+    else
+      letter
     end
   end
 end
