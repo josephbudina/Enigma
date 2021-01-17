@@ -36,6 +36,13 @@ class EnigmaTest < Minitest::Test
     assert_equal 73, @enigma.shift("02715", "040895")[:c]
     assert_equal 20, @enigma.shift("02715", "040895")[:d]
   end
+  
+  def test_it_unshifts
+    assert_equal -3, @enigma.unshift("02715", "040895")[:a]
+    assert_equal -27, @enigma.unshift("02715", "040895")[:b]
+    assert_equal -73, @enigma.unshift("02715", "040895")[:c]
+    assert_equal -20, @enigma.unshift("02715", "040895")[:d]
+  end
 
   def test_it_can_generate_random_key
     assert_instance_of String, @enigma.random_key
@@ -71,13 +78,15 @@ class EnigmaTest < Minitest::Test
     assert_equal "b", @enigma.shift_letters(92, "r")
   end
 
-  # def test_it_decrypts
-  #   expected = {
-  #     encryption: "hello world",
-  #     key: "02715",
-  #     date: "040895"
-  #   }
+  def test_it_decrypts
+    Date.stubs(:today).returns(Date.new(1995, 8, 4))
+    expected = {
+      encryption: "hello world",
+      key: "02715",
+      date: "040895"
+    }
 
-  #   assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
-  # end
+    assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
+    assert_equal expected, @enigma.decrypt("keder ohulw", "02715")
+  end
 end
