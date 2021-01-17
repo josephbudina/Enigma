@@ -1,6 +1,4 @@
 require './test/test_helper'
-require './lib/enigma'
-require 'date'
 
 class EnigmaTest < Minitest::Test
   def setup
@@ -54,6 +52,12 @@ class EnigmaTest < Minitest::Test
         }
 
     assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+  end
+
+  def test_it_adds_date
+    expected = stubs(:date).returns("070917")
+
+    assert_equal expected, @enigma.date
   end
 
   def test_it_can_shift_letters
