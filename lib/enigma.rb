@@ -1,4 +1,5 @@
 class Enigma
+  require 'Date'
   attr_reader :alphabet
 
   def initialize
@@ -41,7 +42,11 @@ class Enigma
     rand(99_999).to_s.rjust(5,"0")
   end
 
-  def encrypt(message, key = random_key, date)
+  def todays_date
+    Date.today.strftime("%d%m%y")
+  end
+
+  def encrypt(message, key = random_key, date = todays_date)
     encrypted = {
       encryption: encrypt_message(message, key, date).join,
       key: key,
