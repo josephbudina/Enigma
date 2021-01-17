@@ -45,19 +45,22 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_encrypts
+    Date.stubs(:today).returns(Date.new(1995, 8, 4))
+    @enigma.stubs(:random_key).returns("02715")
     expected = {
-          encryption: "keder ohulw",
+          encryption: "keder ohulw?",
           key: "02715",
           date: "040895"
         }
 
-    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+    assert_equal expected, @enigma.encrypt("hello world?", "02715", "040895")
+    assert_equal expected, @enigma.encrypt("hello world?", "02715")
+    assert_equal expected, @enigma.encrypt("hello world?")
   end
 
   def test_it_adds_date
-    expected = stubs(:date).returns("070917")
-
-    assert_equal expected, @enigma.date
+    Date.stubs(:today).returns(Date.new(2020, 8, 4))
+    assert_equal "040820", @enigma.todays_date
   end
 
   def test_it_can_shift_letters
