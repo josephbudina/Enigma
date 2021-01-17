@@ -58,10 +58,10 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_shift_letters
     assert_equal "b", @enigma.shift_letters(1, "a")
-    assert_equal "e", @enigma.shift_letters(1, "z")
-    assert_equal "d", @enigma.shift_letters(5, "y")
-    assert_equal "b", @enigma.shift_letters(2, "z")
-    assert_equal "f", @enigma.shift_letters(92, "r")
+    assert_equal " ", @enigma.shift_letters(1, "z")
+    assert_equal "c", @enigma.shift_letters(5, "y")
+    assert_equal "a", @enigma.shift_letters(2, "z")
+    assert_equal "b", @enigma.shift_letters(92, "r")
   end
 
   # def test_it_decrypts
@@ -72,9 +72,5 @@ class EnigmaTest < Minitest::Test
   #   }
 
   #   assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
-  # end
-
-  # def test_it_can_shift_letters
-  #   assert_equal "k", @cipher.shift("h")
   # end
 end
