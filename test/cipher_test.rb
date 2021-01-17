@@ -13,7 +13,7 @@ class CipherTest < Minitest::Test
     assert_equal expected, @cipher.alphabet
   end
 
-  def test_it_can_shift_letters
-    assert_equal "k", @cipher.shift("h")
-  end
+  # def test_it_can_shift_letters
+  #   assert_equal "k", @cipher.shift("h")
+  # end
 end
