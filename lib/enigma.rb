@@ -1,5 +1,4 @@
 class Enigma
-  require 'Date'
   attr_reader :alphabet
 
   def initialize
