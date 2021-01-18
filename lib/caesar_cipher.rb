@@ -1,20 +1,15 @@
 class CaesarCipher
   attr_reader :alphabet
-  
+
+  def initialize
+    @alphabet = ("a".."z").to_a << " "
+  end
+
   def encrypt_message(message, key, date)
     shifts = shift(key, date)
     message = message.downcase
     message.chars.map.with_index do |letter, index|
       index_shift(index, shifts, letter)
-    #   if index % 4 == 0
-    #     shift_letters(shifts[:a], letter)
-    #   elsif index % 4 == 1
-    #     shift_letters(shifts[:b], letter)
-    #   elsif index % 4 == 2
-    #     shift_letters(shifts[:c], letter)
-    #   elsif index % 4 == 3
-    #     shift_letters(shifts[:d], letter)
-    #   end
     end
   end
   
@@ -22,15 +17,6 @@ class CaesarCipher
     shifts = unshift(key, date)
     message.chars.map.with_index do |letter, index|
       index_shift(index, shifts, letter)
-      # if index % 4 == 0
-      #   shift_letters(shifts[:a], letter)
-      # elsif index % 4 == 1
-      #   shift_letters(shifts[:b], letter)
-      # elsif index % 4 == 2
-      #   shift_letters(shifts[:c], letter)
-      # elsif index % 4 == 3
-      #   shift_letters(shifts[:d], letter)
-      # end
     end
   end
 
@@ -46,10 +32,6 @@ class CaesarCipher
     end
   end
 
-  def initialize
-    @alphabet = ("a".."z").to_a << " "
-  end 
-  
   def todays_date
     Date.today.strftime("%d%m%y")
   end
@@ -71,7 +53,6 @@ class CaesarCipher
       d: key[3..4].to_i
     }
   end
-
 
   def offsets(date)
     offsets = {

@@ -63,6 +63,7 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.encrypt("hello world?", "02715", "040895")
     assert_equal expected, @enigma.encrypt("hello world?", "02715")
     assert_equal expected, @enigma.encrypt("hello world?")
+    assert_equal expected[:encryption], @enigma.encrypt_message('hello world?', "02715", "040895").join
   end
 
   def test_it_adds_date
@@ -85,7 +86,9 @@ class EnigmaTest < Minitest::Test
       key: "02715",
       date: "040895"
     }
-
+    expected2 =["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+    assert_equal "u", @enigma.index_shift(3, @enigma.shift("02715", "040895"), "a")
+    assert_equal expected2, @enigma.decrypt_message("keder ohulw", "02715", "040895")
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715")
   end
