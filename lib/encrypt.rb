@@ -15,7 +15,7 @@ else
 end
 
 writer = File.open(ARGV[1], "w")
-writer.write(encrypted_message)
+writer.write(encrypted_message[:encryption])
 writer.close
 
 key = encrypted_message[:key]
