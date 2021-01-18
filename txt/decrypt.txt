@@ -1,0 +1,1 @@
+{:encryption=>"i must not fear. fear is thence mind-killer. fear is the little-death that brings total obliteration. i will face my fear. i will permit it to pass over me and through me. and when it has gone past i will turn the inner eye to see its path. where the fear has gone there will be nothing. only i will remain ― frank herbert, dune", :key=>"08561", :date=>"170121"}
