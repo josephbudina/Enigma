@@ -1,3 +1,4 @@
+require 'date'
 class Enigma
   attr_reader :alphabet
 
@@ -64,6 +65,7 @@ class Enigma
 
   def encrypt_message(message, key, date)
     shifts = shift(key, date)
+    message = message.downcase
     message.chars.map.with_index do |letter, index|
       if index % 4 == 0
         shift_letters(shifts[:a], letter)
