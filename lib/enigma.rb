@@ -21,4 +21,12 @@ class Enigma < CaesarCipher
       date: date
     }
   end
+
+  def todays_date
+    Date.today.strftime("%d%m%y")
+  end
+
+  def random_key
+    rand(99_999).to_s.rjust(5,"0")
+  end
 end
