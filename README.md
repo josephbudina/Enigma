@@ -26,7 +26,7 @@ Turing Mod1 final solo project
 
   Grade: 3.5
 
-*Test Driven Development:
+* Test Driven Development:
   * Tests have been written for every method.
   * These tests had edge-casing in mind.
   * Tests come first!
