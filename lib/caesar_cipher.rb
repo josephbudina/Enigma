@@ -32,14 +32,6 @@ class CaesarCipher
     end
   end
 
-  def todays_date
-    Date.today.strftime("%d%m%y")
-  end
-  
-  def random_key
-    rand(99_999).to_s.rjust(5,"0")
-  end
-  
   def date_squared(date)
     date_squared = date.to_i ** 2
     date_squared_string = date_squared.to_s

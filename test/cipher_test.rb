@@ -1,5 +1,4 @@
 require './test/test_helper'
-require './lib/caesar_cipher'
 
 class CaesarCipherTest < Minitest::Test
   def setup
@@ -43,18 +42,6 @@ class CaesarCipherTest < Minitest::Test
     assert_equal -27, @cipher.unshift("02715", "040895")[:b]
     assert_equal -73, @cipher.unshift("02715", "040895")[:c]
     assert_equal -20, @cipher.unshift("02715", "040895")[:d]
-  end
-
-  def test_it_can_generate_random_key
-    assert_instance_of String, @cipher.random_key
-    assert_equal 5, @cipher.random_key.length
-    assert @cipher.random_key.to_i >= 0
-    assert @cipher.random_key.to_i <= 99_999
-  end
-
-  def test_it_adds_date
-    Date.stubs(:today).returns(Date.new(2020, 8, 4))
-    assert_equal "040820", @cipher.todays_date
   end
 
   def test_it_can_shift_letters
